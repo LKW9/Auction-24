@@ -10,7 +10,6 @@ db = client.dbsparta
 def home():
     return render_template('main.html')
 
-
 @app.route('/auth/login')
 def login():
     return render_template('/auth/login.html')
@@ -18,6 +17,12 @@ def login():
 @app.route('/auth/join')
 def join():
     return render_template('/auth/join.html')
+
+@app.route('/detail/<int:id>')
+def detail(id):
+    return render_template('/detail.html',id=id)
+
+
 
 @app.route("/home", methods=["POST"])
 def bucket_post():
