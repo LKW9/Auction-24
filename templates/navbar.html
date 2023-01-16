@@ -22,6 +22,10 @@
         .cursor{cursor: pointer}
     </style>
     <script>
+    $(document).ready(function () {
+        var session = sessionStorage.getItem("sessionId");
+        console.log("session : ",session);
+    })
     const logout = () => {
         $.ajax({
           type: 'GET',
@@ -33,7 +37,9 @@
           },
         });
       };
-    // const nameContainer
+
+
+
     </script>
 </head>
 <body>

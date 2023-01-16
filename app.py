@@ -1,5 +1,4 @@
 from flask import Flask, session, render_template, request, jsonify
-import requests
 
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.r95aysd.mongodb.net/Cluster0?retryWrites=true&w=majority')
