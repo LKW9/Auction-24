@@ -15,6 +15,22 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const signIn = () => {
+        const inputId = $('.signIn-id-input').val();
+        const inputPw = $('.signIn-pw-input').val();
+        $.ajax({
+          type: 'POST',
+          url: '/auth/signIn',
+          data: { inputId: inputId, inputPw: inputPw },
+          success: function (response) {
+            const { error, message } = response;
+            if (!error) window.location.href = '/auth/login';
+            alert(message);
+          },
+        });
+      };
+    </script>
     <link rel="stylesheet" href="../../static/css/index.css"/>
 </head>
 <body>
@@ -62,7 +78,7 @@
             </div>
         </form>
         <div class="button-box">
-            <div class="sign-submit-btn" onClick="signIn()">가입하기</div>
+            <div class="sign-submit-btn" onclick="signIn()">가입하기</div>
             <a class="sign-submit-btn" href="/">뒤로가기</a>
         </div>
     </div>
