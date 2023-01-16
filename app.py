@@ -48,6 +48,7 @@ if __name__ == "__main__":
 def getlogin():
     return render_template('/auth/login.html')
 
+
 @app.route('/auth/login', methods=['POST'])
 def logIn():
     user_id = request.form['inputId']
@@ -81,6 +82,7 @@ def join():
 def signIn():
     inputId = request.form['inputId']
     inputPw = request.form['inputPw']
+    inputName = request.form['inputName']
     error = True
     # 유효성 검사 (빈문자열, 4자리 미만, ID중복 여부)
     if (len(inputId.strip()) == 0):
@@ -90,18 +92,29 @@ def signIn():
     elif (len(inputId) < 4 or len(inputPw) < 4):
         msg = "ID와 PW의 길이는 4자가 넘어야 합니다."
     elif (db.users.find_one({'id': inputId}) != None):  # 이미 등록된 ID
-        msg = "이미 등록된 ID입니다."
+        msg = "이미 등록된 ID라니까요."
     else:
         msg = "회원가입 완료!"
         error = False
-        db.users.insert_one({'id': inputId, 'pw': inputPw})
+        db.users.insert_one({'id': inputId, 'pw': inputPw, 'name': inputName})
     return jsonify({'message': msg, 'error': error})
+
+@app.route('/auth/join/check', methods=['POST'])
+def idCheck():
+    inputId = request.form['inputId']
+    error = True
+    if (db.users.find_one({'id': inputId}) != None):
+        msg = "중복된 ID입니다."
+    else:
+        msg = "가입이 가능한 ID입니다."
+        error = False
+    return jsonify({'message':msg, 'error':error})
 
 #Logout
 @app.route('/logout', methods=['GET'])
 def logout():
     session.pop('id', None)
-    return jsonify({'message': "로그아웃."})
+    return jsonify({'message': "로그아웃 하셨습니다."})
 
 @app.route('/upload', methods=["GET"])
 def upload():
