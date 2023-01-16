@@ -26,6 +26,7 @@
           success: function (response) {
             const { error, message } = response;
             if (error) return window.location.reload();
+            console.log(response)
             alert(message);
             window.location.href = '/';
           },
