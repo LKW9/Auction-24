@@ -26,14 +26,11 @@ def join():
 def upload():
     return render_template('/upload.html')
 
-<<<<<<< HEAD
 @app.route('/myPage')
 def myPage():
     return render_template('/myPage.html')
 
 
-=======
->>>>>>> 3a7558e119c55154283e98e5e1ae5807334abfb8
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
