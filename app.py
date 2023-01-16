@@ -22,6 +22,9 @@ def join():
 def detail(id):
     return render_template('/detail.html',id=id)
 
+@app.route('/upload')
+def upload():
+    return render_template('/upload.html')
 
 
 @app.route("/home", methods=["POST"])

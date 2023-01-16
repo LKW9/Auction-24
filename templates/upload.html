@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload</title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../static/css/index.css"/>
+    <style>
+        .uploadWrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            let fileTarget = $('.upload-hidden');
+
+            fileTarget.on('change', function () {  // 값이 변경되면
+                if (window.FileReader) {  // modern browser
+                    console.log($(this))
+                    var filename = $(this)[0].files[0].name;
+                } else {  // old IE
+                    var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
+                }
+                // 추출한 파일명 삽입
+                $(this).siblings('.upload-name').val(filename);
+            });
+
+        })
+
+        function save() {
+            let title = $('#title').val()
+            let minbid = $('#minbid').val()
+            let unitbid = $('#unitbid').val()
+            let filename = $('.upload-name').val();
+            let image = $('#ex_filename')[0].files[0] // id file의 0번째 태그의 files 중 0 번째 파일
+            console.log("image ", image);
+            let form_data = new FormData()
+            form_data.append("title", title)
+            form_data.append("unitbid", unitbid)
+            form_data.append("minbid", minbid)
+            form_data.append("image", image, filename)
+
+            for (let value of form_data.values()) {
+                console.log(value);
+            }
+            $.ajax({
+                type: "POST",
+                url: `/users/${id}/items`,
+                data: form_data,
+                // 파일을 보내는데 필요한 기본 세팅이 되어있지 않을 수 있기 떄문에 false로 설정
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+{% include "navbar.html" %}
+<div class="login-box uploadWrapper">
+    <form>
+        <div class="form-floating mb-3">
+            <label for="title">제목</label>
+            <input
+                    type="text"
+                    class="form-control input-box signIn-pw-input"
+                    id="title"
+                    placeholder="제목"
+            />
+        </div>
+        <div class="filebox" style="display:flex;justify-content: space-between;margin-bottom: 1rem;">
+            <input class="upload-name" value="업로드 이미지 선택" disabled="disabled" style="height: 38px;width: 238px;">
+            <label for="ex_filename" style="padding: 10px;color: white;background: black">업로드</label>
+            <input type="file" id="ex_filename" class="upload-hidden" style="display: none;">
+        </div>
+        <div class="form-floating mb-3">
+            <label for="minbid">기본입찰가</label>
+            <input
+                    type="text"
+                    class="form-control input-box signIn-pw-input"
+                    id="minbid"
+                    placeholder="기본입찰가"
+            />
+        </div>
+        <div class="form-floating mb-3">
+            <label for="unitbid">입찰단위</label>
+            <input
+                    type="text"
+                    class="form-control input-box signIn-pw-input"
+                    id="unitbid"
+                    placeholder="입찰단위"
+            />
+        </div>
+    </form>
+    <div class="button-box">
+        <div class="sign-submit-btn" onClick="save()">가입하기</div>
+        <a class="sign-submit-btn" href="/">뒤로가기</a>
+    </div>
+</div>
+
+</body>
+</html>
