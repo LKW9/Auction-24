@@ -60,19 +60,19 @@
             for (let value of form_data.values()) {
                 console.log(value);
             }
-            $.ajax({
-                type: "POST",
-                url: `/users/${id}/items`,
-                data: form_data,
-                // 파일을 보내는데 필요한 기본 세팅이 되어있지 않을 수 있기 떄문에 false로 설정
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert(response["msg"])
-                    window.location.reload()
-                }
-            });
+            // $.ajax({
+            //     type: "POST",
+            //     url: `/users/${id}/items`,
+            //     data: form_data,
+            //     // 파일을 보내는데 필요한 기본 세팅이 되어있지 않을 수 있기 떄문에 false로 설정
+            //     cache: false,
+            //     contentType: false,
+            //     processData: false,
+            //     success: function (response) {
+            //         alert(response["msg"])
+            //         window.location.reload()
+            //     }
+            // });
         }
 
     </script>
