@@ -19,10 +19,11 @@
       const signIn = () => {
         const inputId = $('.signIn-id-input').val();
         const inputPw = $('.signIn-pw-input').val();
+        const inputName = $('.signIn-name-input').val();
         $.ajax({
           type: 'POST',
           url: '/auth/signIn',
-          data: { inputId: inputId, inputPw: inputPw },
+          data: { inputId: inputId, inputPw: inputPw, inputName : inputName },
           success: function (response) {
             const { error, message } = response;
             if (!error) window.location.href = '/auth/login';
@@ -30,6 +31,22 @@
           },
         });
       };
+      const idCheck = () => {
+        const inputId = $('.signIn-id-input').val();
+        console.log(inputId)
+        $.ajax({
+            type:'POST',
+            url: '/auth/join/check',
+            data: {inputId: inputId},
+            success: function(response) {
+                console.log(response)
+                const { error, message } = response;
+                if (error) alert(message);
+                else alert(message);
+            }
+        });
+      }
+
     </script>
     <link rel="stylesheet" href="../../static/css/index.css"/>
 </head>
@@ -46,7 +63,7 @@
                     id="floatingInput"
                     placeholder="name@example.com"
                 />
-                <span class="idCheck">중복체크</span>
+                <span class="idCheck" onclick="idCheck()">중복체크</span>
             </div>
             <div class="form-floating mb-3">
                 <label for="floatingPassword">PW</label>
@@ -61,7 +78,7 @@
             <div class="form-floating mb-3">
                 <label for="floatingPasswordCheck">PW확인</label>
                 <input
-                    type="passwordCheck"
+                    type="text"
                     class="form-control input-box signIn-pw-input"
                     id="floatingPasswordCheck"
                     placeholder="Password"
@@ -70,8 +87,8 @@
             <div class="form-floating mb-3">
                 <label for="name">이름</label>
                 <input
-                    type="passwordCheck"
-                    class="form-control input-box signIn-pw-input"
+                    type="nameCheck"
+                    class="form-control input-box signIn-name-input"
                     id="name"
                     placeholder="이름"
                 />
