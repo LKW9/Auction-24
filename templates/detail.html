@@ -40,6 +40,9 @@
         }
     </style>
     <script>
+         $(document).ready(function () {
+            bid();
+        });
         function bid() {
              $.ajax({
                 type: "GET",
@@ -47,6 +50,7 @@
                 data: {},
                 success: function (response) {
                     let rows = response['bid_list']
+                    console.log(rows)
                     for (let i = 0; i < rows.length; i++){
                         let minBid = rows[i]['minBid']
                         let nowBid = rows[i]['nowBid']
@@ -55,11 +59,11 @@
                         let temp_html =``
 
                         if (minBid == nowBid) {
-                            temp_html = ` `
+                            temp_html = nowBid + unitBid
+                            console.log(temp_html)
                         }else {
-                             temp_html = ` `
-                        }
-                        $('#bucket-list').append(temp_html)
+                            temp_html = nowBid + unitBid
+                        }return temp_html({});
 
                     }
                 }
@@ -91,10 +95,11 @@
             <div class="inputCommon">최고입찰가</div>
             <div class="inputCommon">단위</div>
             <div class="inputCommon">내용</div>
-            <div class="btn ">입찰</div>
-            <div class="btn color2" onclick="bid_fail">입찰취소</div>
-            <div class="btn ">뒤로가기</div>
+            <button class="btn " onclick="bid()">입찰</button>
+            <button class="btn color2" onclick="bid_fail">입찰취소</button>
+            <button class="btn ">뒤로가기</button>
         </div>
+
 
     </div>
 </div>
