@@ -21,14 +21,9 @@ def login():
 def join():
     return render_template('/auth/join.html')
 
-@app.route('/detail/<int:id>')
-def detail(id):
-    return render_template('/detail.html',id=id)
-
 @app.route('/upload')
 def upload():
     return render_template('/upload.html')
-
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
@@ -39,6 +34,8 @@ def getItemList():
         for num in range(len(items)):
             allItems.append(items[num])
     return jsonify({'allItems': allItems})
+
+
 
 ###Modify page###
 @app.route('/detail/<int:id>')

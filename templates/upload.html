@@ -46,11 +46,13 @@
             let title = $('#title').val()
             let minbid = $('#minbid').val()
             let unitbid = $('#unitbid').val()
+            let desc = $('#desc').val()
             let filename = $('.upload-name').val();
             let image = $('#ex_filename')[0].files[0] // id file의 0번째 태그의 files 중 0 번째 파일
             console.log("image ", image);
             let form_data = new FormData()
             form_data.append("title", title)
+            form_data.append("desc", desc)
             form_data.append("unitbid", unitbid)
             form_data.append("minbid", minbid)
             form_data.append("image", image, filename)
@@ -109,6 +111,15 @@
                     class="form-control input-box signIn-pw-input"
                     id="unitbid"
                     placeholder="입찰단위"
+            />
+        </div>
+        <div class="form-floating mb-3">
+            <label for="desc">설명</label>
+            <input
+                    type="text"
+                    class="form-control input-box signIn-pw-input"
+                    id="desc"
+                    placeholder="설명"
             />
         </div>
     </form>
