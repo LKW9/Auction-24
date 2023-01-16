@@ -3,7 +3,6 @@ from flask import Flask, session, render_template, request, jsonify
 import requests
 
 
-
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.r95aysd.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
@@ -127,7 +126,7 @@ def myPage():
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
-    allItems = list(db.items.find({}))
+    allItems = list(db.items.find({}, {'_id': False}))
     return jsonify({'allItems': allItems})
 
 
@@ -138,7 +137,8 @@ def uploadItem():
     itemList = list(db.bucket.find({}, {'_id': False}))
     itemNum = len(itemList) + 1
     title = request.form['title']
-    pic = request.form['pic']
+    image = request.files['pic']
+    extension = image.filename.split('.')[-1]
     minBid = request.form['minBid']
     nowBid = request.form['nowBid']
     unitBid = request.form['unitBid']
@@ -148,11 +148,11 @@ def uploadItem():
     item = {
         'itemNum' : itemNum,
         'title' : title,
-        'pic' : pic,
-        'minBid' : minBid,
-        'nowBid' : nowBid,
-        'unitBid' : unitBid,
-        'status' : status,
+        'pic' : extension,
+        'minBid' : int(minBid),
+        'nowBid' : int(nowBid),
+        'unitBid' : int(unitBid),
+        'status' : int(status),
         'desc' : desc,
         'owner' : owner
     }
