@@ -149,9 +149,22 @@ def detail(id):
 
     return render_template('/detail.html',id=id)
 
+@app.route('/detail', methods=["GET"])
+def bid_list():
+    bid_list = list(db.items.find({}, {'_id': False}))
+    return jsonify({'bid_list': bid_list})
 
 
+@app.route('/detail', methods=["POST"])
+def bid():
+    nowBid_receive = request.form('nowBid_give')
+    db.items.insert_one({'nowBid': nowBid_receive})
+    return jsonify({'msg': '저장 완료!'})
 
+
+@app.route('/detail', methods=["POST"])
+def bid_fail():
+    return jsonify({'msg': '안돼!!'})
 
 
 

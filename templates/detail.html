@@ -39,6 +39,34 @@
             margin: 15px 0px;
         }
     </style>
+    <script>
+        function bid() {
+             $.ajax({
+                type: "GET",
+                url: "/detail",
+                data: {},
+                success: function (response) {
+                    let rows = response['bid_list']
+                    for (let i = 0; i < rows.length; i++){
+                        let minBid = rows[i]['minBid']
+                        let nowBid = rows[i]['nowBid']
+                        let unitBid = rows[i]['unitBid']
+
+
+                        let temp_html =``
+
+                        if (minBid == nowBid) {
+                            temp_html = ` `
+                        }else {
+                             temp_html = ` `
+                        }
+                        $('#bucket-list').append(temp_html)
+
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 {% include "navbar.html" %}
