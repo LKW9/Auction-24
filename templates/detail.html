@@ -3,8 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .itemDetail{
+            display: flex;
+            max-width: 1080px;
+            margin: 100px auto;
+            justify-content: space-between;
+        }
+        .itemDetail > div {
+            width: 500px;
+            height: 650px;
+        }
+        .leftDetail{
+            display: flex;
+        }
+        .leftDetail > img {
+            border-radius: 15px;
+        }
+        .btn{
+            width: 200px;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 3px;
+            font-weight: 600;
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+        .inputCommon{font-size: 20px;font-weight: bold; margin-bottom: 10px}
+
+        .color2{
+            background: white;
+            color:black;
+            border: 1px solid black;
+            margin: 15px 0px;
+        }
+    </style>
 </head>
 <body>
+{% include "navbar.html" %}
+<div class="itemDetail">
+    <div class="leftDetail">
+        <img src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt="" style="width: 100%;">
+    </div>
+    <div class="rightDetail">
+        <div class="rightContets">
+            <div class="inputCommon">제목 : id:{{id}}</div>
+            <div class="inputCommon">현재입찰가</div>
+            <div class="inputCommon">최고입찰가</div>
+            <div class="inputCommon">단위</div>
+            <div class="inputCommon">내용</div>
+            <div class="btn ">입찰</div>
+            <div class="btn color2">입찰취소</div>
+            <div class="btn ">뒤로가기</div>
+        </div>
 
+    </div>
+</div>
 </body>
 </html>
