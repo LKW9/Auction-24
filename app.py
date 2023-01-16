@@ -41,7 +41,7 @@ def detail(id):
     return render_template('/detail.html',id=id)
 
 
-##item upload##
+##Upload##
 @app.route("/users/<id>/items",methods=["POST"])
 def uploadItem(id):
     items = db.users.find_one({'id':id})['items']
