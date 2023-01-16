@@ -1,5 +1,9 @@
 from flask import Flask, session, render_template, request, jsonify
 
+import requests
+
+
+
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.r95aysd.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
@@ -162,6 +166,7 @@ def detail(id):
 
     return render_template('/detail.html',id=id)
 
+
 @app.route('/detail', methods=["POST"])
 def bid():
     nowBid_receive = request.form('nowBid_give')
@@ -175,15 +180,8 @@ def bid_list():
 
 @app.route('/detail', methods=["POST"])
 def bid_fail():
+
     
     return jsonify({'msg': ' 안돼! '})
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
