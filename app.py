@@ -134,7 +134,8 @@ def uploadItem():
     itemList = list(db.bucket.find({}, {'_id': False}))
     itemNum = len(itemList) + 1
     title = request.form['title']
-    pic = request.form['pic']
+    image = request.files['pic']
+    extension = image.filename.split('.')[-1]
     minBid = request.form['minBid']
     nowBid = request.form['nowBid']
     unitBid = request.form['unitBid']
@@ -144,7 +145,7 @@ def uploadItem():
     item = {
         'itemNum' : itemNum,
         'title' : title,
-        'pic' : pic,
+        'pic' : extension,
         'minBid' : minBid,
         'nowBid' : nowBid,
         'unitBid' : unitBid,

@@ -28,7 +28,6 @@
     <script>
         $(document).ready(function () {
             let fileTarget = $('.upload-hidden');
-
             fileTarget.on('change', function () {  // 값이 변경되면
                 if (window.FileReader) {  // modern browser
                     console.log($(this))
@@ -40,43 +39,45 @@
                 $(this).siblings('.upload-name').val(filename);
             });
 
-            sessionStorage.setItem("key1", 10);
-            console.log(sessionStorage.getItem("key1"))
-            console.log(sessionStorage.getItem("session"))
         })
 
-        function save() {
+        function save(id) {
+            let userId = id;
             let title = $('#title').val()
             let minbid = $('#minbid').val()
             let unitbid = $('#unitbid').val()
             let desc = $('#desc').val()
             let filename = $('.upload-name').val();
+            let status = 0;
             let image = $('#ex_filename')[0].files[0] // id file의 0번째 태그의 files 중 0 번째 파일
-            console.log("image ", image);
+
             let form_data = new FormData()
+            form_data.append("id", userId)
             form_data.append("title", title)
             form_data.append("desc", desc)
             form_data.append("unitBid", unitbid)
             form_data.append("minBid", minbid)
+            form_data.append("status", status)
+            form_data.append("nowBid", unitbid+minbid)
             form_data.append("pic", image, filename)
 
             for (let value of form_data.values()) {
                 console.log(value);
             }
 
-            // $.ajax({
-            //     type: "POST",
-            //     url: `/users/${id}/items`,
-            //     data: form_data,
-            //     // 파일을 보내는데 필요한 기본 세팅이 되어있지 않을 수 있기 떄문에 false로 설정
-            //     cache: false,
-            //     contentType: false,
-            //     processData: false,
-            //     success: function (response) {
-            //         alert(response["msg"])
-            //         window.location.reload()
-            //     }
-            // });
+            $.ajax({
+                type: "POST",
+                url: `/upload`,
+                data: form_data,
+                // 파일을 보내는데 필요한 기본 세팅이 되어있지 않을 수 있기 떄문에 false로 설정
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.href = '/';
+                }
+            });
         }
 
     </script>
@@ -129,7 +130,7 @@
         </div>
     </form>
     <div class="button-box">
-        <div class="sign-submit-btn" onClick="save()">가입하기</div>
+        <div class="sign-submit-btn" onClick='save("{{session["id"]}}")'>가입하기</div>
         <a class="sign-submit-btn" href="/">뒤로가기</a>
     </div>
 </div>
