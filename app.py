@@ -1,5 +1,4 @@
 from flask import Flask, session, render_template, request, jsonify
-import requests
 
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.r95aysd.mongodb.net/Cluster0?retryWrites=true&w=majority')
@@ -104,6 +103,9 @@ def logout():
 def upload():
     return render_template('/upload.html')
 
+@app.route('/myPage')
+def myPage():
+    return render_template('/myPage.html')
 
 ###MAIN###
 @app.route("/items", methods=["GET"])
