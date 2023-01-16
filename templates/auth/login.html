@@ -15,6 +15,23 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script>
+        const login = () => {
+        const inputId = $('.login-id-input').val();
+        const inputPw = $('.login-pw-input').val();
+        $.ajax({
+          type: 'POST',
+          url: '/auth/login',
+          data: { inputId: inputId, inputPw: inputPw },
+          success: function (response) {
+            const { error, message } = response;
+            if (error) return window.location.reload();
+            alert(message);
+            window.location.href = '/';
+          },
+        });
+      };
+    </script>
     <link rel="stylesheet" href="../../static/css/index.css"/>
 </head>
 <body>
@@ -42,7 +59,7 @@
             </div>
         </form>
         <div class="button-box mt-3">
-            <div class="login-btn" onClick="login()">로그인</div>
+            <div class="login-btn" onclick="login()">로그인</div>
             <a href="/auth/join" class="login-btn">회원가입</a>
         </div>
     </div>

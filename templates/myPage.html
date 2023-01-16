@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>myPage</title>
+    <style>
+        .myPageWrapper {
+            max-width: 720px;
+            margin: 120px auto;
+        }
+
+        .myPageTitle {
+            display: flex;
+            align-items: center;
+            padding: 25px 0px;
+            color: black;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .myBox {
+            width: 300px;
+            margin-right: 120px;
+        }
+        .myBox > div {
+            margin-bottom: 10px;
+        }
+        .myBox:nth-of-type(2n){
+            margin-right: inherit;
+        }
+        .imgWrapper > img {
+            width: 100%;
+        }
+        .myBoxWrapper{
+            display: flex;
+            flex-flow: wrap;
+        }
+        .title{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+{% include "navbar.html" %}
+<div class="myPageWrapper">
+    <p class="myPageTitle">마이페이지</p>
+    <div class="myBoxWrapper">
+        <div class="myBox">
+            <div class="imgWrapper">
+                <img src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt="">
+            </div>
+            <div class="title">제목</div>
+            <div class="nowBid">현재입찰가</div>
+            <div class="highBid">최고입찰가</div>
+        </div>
+        <div class="myBox">
+            <div class="imgWrapper">
+                <img src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt="">
+            </div>
+            <div class="title">제목</div>
+            <div class="nowBid">현재입찰가</div>
+            <div class="highBid">최고입찰가</div>
+        </div>
+        <div class="myBox">
+            <div class="imgWrapper">
+                <img src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt="">
+            </div>
+            <div class="title">제목</div>
+            <div class="nowBid">현재입찰가</div>
+            <div class="highBid">최고입찰가</div>
+        </div>
+        <div class="myBox">
+            <div class="imgWrapper">
+                <img src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt="">
+            </div>
+            <div class="title">제목</div>
+            <div class="nowBid">현재입찰가</div>
+            <div class="highBid">최고입찰가</div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
