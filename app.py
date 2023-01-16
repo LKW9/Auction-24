@@ -58,6 +58,7 @@ def uploadItem(id):
     db.users.update_one({'id': id}, {'$set': {'items': items}})
     return jsonify({'msg' : '등록 완료!'})
 
+### 안녕하세요 김머현입니다###
 
 
 
