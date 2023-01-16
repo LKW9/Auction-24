@@ -4,6 +4,7 @@ app = Flask(__name__)
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.r95aysd.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
+id='abcd'
 
 ###HOME###
 @app.route('/')
@@ -21,15 +22,18 @@ def login():
 def join():
     return render_template('/auth/join.html')
 
-@app.route('/upload')
+@app.route('/upload', methods=["GET"])
 def upload():
     return render_template('/upload.html')
 
+<<<<<<< HEAD
 @app.route('/myPage')
 def myPage():
     return render_template('/myPage.html')
 
 
+=======
+>>>>>>> 3a7558e119c55154283e98e5e1ae5807334abfb8
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
@@ -37,37 +41,39 @@ def getItemList():
     return jsonify({'allItems': allItems})
 
 
-
-###Modify page###
-@app.route('/detail/<int:id>')
-def detail(id):
-    return render_template('/detail.html',id=id)
-
 ##Upload##
-@app.route("/users/<id>/items",methods=["POST"])
-def uploadItem(id):
-    items = db.users.find_one({'id':id})['items']
+@app.route("/upload" , methods=["POST"])
+def uploadItem():
+    itemList = list(db.bucket.find({}, {'_id': False}))
+    itemNum = len(itemList) + 1
     title = request.form['title']
     pic = request.form['pic']
     minBid = request.form['minBid']
+    nowBid = request.form['nowBid']
     unitBid = request.form['unitBid']
     desc = request.form['desc']
     status = request.form['status']
     owner = id
-    num = len(items) + 1
     item = {
-        'itemNum' : num+1,
+        'itemNum' : itemNum,
         'title' : title,
         'pic' : pic,
         'minBid' : minBid,
+        'nowBid' : nowBid,
         'unitBid' : unitBid,
         'status' : status,
         'desc' : desc,
         'owner' : owner
     }
-    items.append(item)
-    db.users.update_one({'id': id}, {'$set': {'items': items}})
-    return jsonify({'msg' : '등록 완료!'})
+    db.items.insert_one(item)
+    return jsonify({'msg' : '등록되었습니다.'})
+
+
+###Modify page###
+@app.route('/detail/<int:id>')
+def detail(id):
+
+    return render_template('/detail.html',id=id)
 
 
 
