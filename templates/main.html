@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+</head>
+<body>
+<div class="list-main-container">
+    <div class='list-card' onclick="changeMusic('${id}')">
+        <img src='${thumbnail}' class='list-img' id="${id}"/>
+        <div class='list-info'>
+            <div class='list-title'>${title}</div>
+            <div class="list-bottom-info">
+                <div class="info-owner">${owner}</div>
+                <div class="info-duration">${duration}</div>
+            </div>
+        </div>
+    </div>
+    <div onclick="deleteMusic('${id}')" class="list-delete">
+        <svg width="25" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    </div>
+</div>
+</body>
+</html>
