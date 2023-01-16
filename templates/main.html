@@ -4,126 +4,180 @@
     <meta charset="UTF-8">
     <title>main</title>
     <style>
-        .mainContents{
+        .mainContents {
             display: flex;
             flex-flow: wrap;
             max-width: 1080px;
             margin: 110px auto;
         }
-        .itemBox{
+
+        .itemBox {
             margin-right: 30px;
-            width: calc(33.33%  - 20px);
+            width: calc(33.33% - 20px);
             height: 300px;
             border-radius: 10px;
             box-sizing: border-box;
             text-align: center;
             margin-bottom: 30px;
         }
-        .itemBox:nth-of-type(3n){
+
+        .itemBox:nth-of-type(3n) {
             margin-right: inherit;
         }
-        .itemBoxImg{
-            width: 100%;border-radius: 20px
+
+        .itemBoxImg {
+            width: 100%;
+            border-radius: 20px
         }
-        .totalBid{
+
+        .totalBid {
             margin-top: 15px;
             font-weight: bold;
             font-size: 17px;
-            color:black;
+            color: black;
         }
-        .totalBid > div:nth-last-of-type(0){
+
+        .totalBid > div:nth-last-of-type(0) {
             margin-top: 5px;
         }
-        .nowBid{
-            margin:8px 0px;
+
+        .nowBid {
+            margin: 8px 0px;
+        }
+
+        .plusIcon {
+            position: fixed;
+            right: 30px;
+            width: 70px;
+            bottom: 40px;
+            z-index: 1;
+
+        }
+
+        .plusIcon > a {
+            color: black !important;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //전체조회
+            show_list();
+        })
+
+        function show_list() {
+            $.ajax({
+                type: "GET",
+                url: "/items",
+                data: {},
+                success: function (response) {
+                    console.log("response : ",response);
+                    // let rows = response['linklist']
+                    // for (let l = 0; l < rows.length; l++) {
+                    //     // let sendMsg = rows[l];
+                    //     // let id = rows[l]['id'];
+                    //     // let temp_html = ``;
+                    //     // temp_html = ``
+                    //     // $('.mainContents').append(temp_html);
+                    // }
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-    {% include "navbar.html" %}
-    <div class="mainContents">
-        <p></p>
-        <div class="itemBox" id="Box1">
-            <a href="/detail/1">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box2">
-            <a href="/detail/2">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box3">
-            <a href="/detail/3">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box4">
-            <a href="/detail/4">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box5">
-            <a href="/detail/5">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box6">
-            <a href="/detail/6">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box7">
-            <a href="/detail/7">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box8">
-            <a href="/detail/8">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
-        <div class="itemBox" id="Box9">
-            <a href="/detail/9">
-                <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt ="" />
-                <div class="totalBid">
-                    <div class="nowBid">현재입찰가 : 100원</div>
-                    <div>기본입찰가 : 100원</div>
-                </div>
-            </a>
-        </div>
+{% include "navbar.html" %}
+<div class="mainContents">
+    <p></p>
+    <div class="itemBox" id="Box1">
+        <a href="/detail/1">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
     </div>
+    <div class="itemBox" id="Box2">
+        <a href="/detail/2">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+    <div class="itemBox" id="Box3">
+        <a href="/detail/3">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+    <div class="itemBox" id="Box4">
+        <a href="/detail/4">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+    <div class="itemBox" id="Box5">
+        <a href="/detail/5">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+    <div class="itemBox" id="Box6">
+        <a href="/detail/6">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+    <div class="itemBox" id="Box7">
+        <a href="/detail/7">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+    <div class="itemBox" id="Box8">
+        <a href="/detail/8">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+    <div class="itemBox" id="Box9">
+        <a href="/detail/9">
+            <image class="itemBoxImg" src="https://cdn.kado.net/news/photo/202102/1060204_489188_4430.jpg" alt=""/>
+            <div class="totalBid">
+                <div class="nowBid">현재입찰가 : 100원</div>
+                <div>기본입찰가 : 100원</div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="plusIcon">
+    <a href="/upload" alt="upload이동">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </a>
+</div>
 </body>
 </html>
