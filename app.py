@@ -10,7 +10,7 @@ db = client.dbsparta
 def home():
     return render_template('index.html')
 
-@app.route("/bucket", methods=["POST"])
+@app.route("/home", methods=["POST"])
 def bucket_post():
     bucket_receive = request.form['bucket_give']
     bucket_list = list(db.bucket.find({}, {'_id' : False}))
@@ -21,13 +21,7 @@ def bucket_post():
     db.bucket.insert_one(doc)
     return jsonify({'msg': 'POST(기록) 연결 완료!'})
 
-@app.route("/bucket/done", methods=["POST"])
-def bucket_done():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': 'POST(완료) 연결 완료!'})
-
-@app.route("/bucket", methods=["GET"])
+@app.route("/home", methods=["GET"])
 def bucket_get():
     return jsonify({'msg': 'GET 연결 완료!'})
 
