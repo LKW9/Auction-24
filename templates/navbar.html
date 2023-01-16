@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../../static/css/reset.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .navbarWrapper {
             height: 60px;
@@ -21,23 +22,18 @@
         .cursor{cursor: pointer}
     </style>
     <script>
-        function logOut(){
-            if(confirm("로그아웃 하시겠습니까??")) {
-                // $.ajax({
-                //     type: "DELETE",
-                //     url: `/api/link/${id}`,
-                //     data: id,
-                //     // 파일을 보내는데 필요한 기본 세팅이 되어있지 않을 수 있기 떄문에 false로 설정
-                //     cache: false,
-                //     contentType: false,
-                //     processData: false,
-                //     success: function (response) {
-                //         alert(response["msg"])
-                //         window.location.reload()
-                //     }
-                // });
-            };
-        }
+    const logout = () => {
+        $.ajax({
+          type: 'GET',
+          url: '/logout',
+          data: {},
+          success: function (response) {
+            alert(response['message']);
+            window.location.href = '/';
+          },
+        });
+      };
+    // const nameContainer
     </script>
 </head>
 <body>
@@ -45,13 +41,9 @@
     <svg style="width: 28px;margin-right:10px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
       <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
-    <div class="navName">조영준님</div>
-    <div class="navMyPage cursor">
-        <a href="/myPage" alt="myPage">
-            Mypage
-        </a>
-    </div>
-    <div class="navLogout cursor" onclick="logOut()">로그아웃</div>
+    <div class="navName"></div>
+    <div class="navMyPage">Mypage</div>
+    <div class="navLogout" onclick="logout()">로그아웃</div>
 </div>
 </body>
 </html>
