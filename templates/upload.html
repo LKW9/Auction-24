@@ -40,6 +40,9 @@
                 $(this).siblings('.upload-name').val(filename);
             });
 
+            sessionStorage.setItem("key1", 10);
+            console.log(sessionStorage.getItem("key1"))
+            console.log(sessionStorage.getItem("session"))
         })
 
         function save() {
