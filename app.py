@@ -24,6 +24,12 @@ def join():
 @app.route('/upload')
 def upload():
     return render_template('/upload.html')
+
+@app.route('/myPage')
+def myPage():
+    return render_template('/myPage.html')
+
+
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
@@ -40,7 +46,6 @@ def getItemList():
 ###Modify page###
 @app.route('/detail/<int:id>')
 def detail(id):
-
     return render_template('/detail.html',id=id)
 
 

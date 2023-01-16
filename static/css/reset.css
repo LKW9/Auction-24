@@ -123,6 +123,9 @@ table {
   border-spacing: 0;
 }
 a {
-  text-decoration: none;
-  color: white!important;
+  text-decoration: none!important;
+  color: white;
+}
+sign-submit-btn > a:hover {
+  color: white;
 }
