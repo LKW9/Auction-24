@@ -33,12 +33,7 @@ def myPage():
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
-    users = db.users.find({})
-    allItems = []
-    for user in users:
-        items = user['items']
-        for num in range(len(items)):
-            allItems.append(items[num])
+    allItems = list(db.items.find({}))
     return jsonify({'allItems': allItems})
 
 
@@ -47,7 +42,6 @@ def getItemList():
 @app.route('/detail/<int:id>')
 def detail(id):
     return render_template('/detail.html',id=id)
-
 
 ##Upload##
 @app.route("/users/<id>/items",methods=["POST"])
