@@ -1,8 +1,4 @@
 from flask import Flask, session, render_template, request, jsonify
-<<<<<<< Updated upstream
-=======
-import requests
->>>>>>> Stashed changes
 
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://test:sparta@cluster0.r95aysd.mongodb.net/Cluster0?retryWrites=true&w=majority')
@@ -120,12 +116,9 @@ def logout():
 def upload():
     return render_template('/upload.html')
 
-<<<<<<< Updated upstream
 @app.route('/myPage')
 def myPage():
     return render_template('/myPage.html')
-=======
->>>>>>> Stashed changes
 
 ###MAIN###
 @app.route("/items", methods=["GET"])
@@ -169,25 +162,11 @@ def detail(id):
 
     return render_template('/detail.html',id=id)
 
-@app.route('/detail', methods=["GET"])
-def bid_list():
-    bid_list = list(db.items.find({}, {'_id': False}))
-    return jsonify({'bid_list': bid_list})
-
-
-<<<<<<< Updated upstream
 @app.route('/detail', methods=["POST"])
 def bid():
     nowBid_receive = request.form('nowBid_give')
     db.items.insert_one({'nowBid': nowBid_receive})
     return jsonify({'msg': '저장 완료!'})
-=======
-@app.route('/detail', methods=["GET"])
-def bid_list():
-    minBid_receive = request.form['minBid_give']
-    nowBid_receive = request.form['nowBid_give']
-    bid_list = list(db.items.update({'minBid': int(minBid_receive)}, {'nowBid': int(nowBid_receive)}))
-    return jsonify({'buckets': bid_list})
 
 @app.route('/detail', methods=["GET"])
 def bid_list():
@@ -196,13 +175,11 @@ def bid_list():
 
 @app.route('/detail', methods=["POST"])
 def bid_fail():
->>>>>>> Stashed changes
-
+    
     return jsonify({'msg': ' 안돼! '})
 
-@app.route('/detail', methods=["POST"])
-def bid_fail():
-    return jsonify({'msg': '안돼!!'})
+
+
 
 
 

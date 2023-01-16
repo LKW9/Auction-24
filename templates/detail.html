@@ -39,7 +39,6 @@
             margin: 15px 0px;
         }
     </style>
-<<<<<<< Updated upstream
     <script>
         function bid() {
              $.ajax({
@@ -52,7 +51,6 @@
                         let minBid = rows[i]['minBid']
                         let nowBid = rows[i]['nowBid']
                         let unitBid = rows[i]['unitBid']
-
 
                         let temp_html =``
 
@@ -67,10 +65,18 @@
                 }
             });
         }
+        function bid_fail() {
+             $.ajax({
+                type: "POST",
+                url: "/detail",
+                data: {},
+                success: function (response) {
+                   console.log(response)
+                }
+            });
+        }
+
     </script>
-=======
-    
->>>>>>> Stashed changes
 </head>
 <body>
 {% include "navbar.html" %}
@@ -86,7 +92,7 @@
             <div class="inputCommon">단위</div>
             <div class="inputCommon">내용</div>
             <div class="btn ">입찰</div>
-            <div class="btn color2">입찰취소</div>
+            <div class="btn color2" onclick="bid_fail">입찰취소</div>
             <div class="btn ">뒤로가기</div>
         </div>
 
