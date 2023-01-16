@@ -1,0 +1,107 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    color: black;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 300px;
+    max-height: 700px;
+    min-height: 150px;
+    border-radius: 5px;
+}
+
+.input-box {
+    border-radius: 5px;
+    width: 300px;
+    outline: none;
+    transition: ease-in-out 0.15s;
+    color: black;
+}
+
+/*.input-box:focus {*/
+/*    background: rgba(255, 255, 255, 0.3);*/
+/*    color: white;*/
+/*    outline: none;*/
+/*    border: none;*/
+/*}*/
+.login-title {
+    display: flex;
+    align-items: center;
+    padding: 25px 0px;
+    color: black;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-btn {
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 600;
+    background: #111;
+    color: white;
+    transition: 0.15s ease-in-out;
+    width: 145px;
+    cursor: pointer;
+}
+
+/*.login-btn:hover {*/
+/*    cursor: pointer;*/
+/*    background: rgba(255, 255, 255, 0.8);*/
+/*    color: #111;*/
+/*}*/
+
+.button-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+    display: flex;
+}
+
+/* Sign in */
+.sign-submit-btn {
+    width: 48%;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 600;
+    background: #111;
+    color: white;
+    transition: 0.15s ease-in-out;
+    cursor: pointer;
+}
+.idCheck{
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    cursor: pointer;
+    border: 1px solid black;
+    background: black;
+    color: white;
+    border-radius: 3px;
+    padding: 7px 10px;
+}
+.form-floating>.form-control:not(:placeholder-shown) {
+    padding-top: 2.25rem;
+}
+/*.sign-submit-btn:hover {*/
+/*    cursor: pointer;*/
+/*    background: antiquewhite;*/
+/*    color: #111;*/
+/*}*/
