@@ -53,9 +53,9 @@
             let form_data = new FormData()
             form_data.append("title", title)
             form_data.append("desc", desc)
-            form_data.append("unitbid", unitbid)
-            form_data.append("minbid", minbid)
-            form_data.append("image", image, filename)
+            form_data.append("unitBid", unitbid)
+            form_data.append("minBid", minbid)
+            form_data.append("pic", image, filename)
 
             for (let value of form_data.values()) {
                 console.log(value);
@@ -81,6 +81,7 @@
 {% include "navbar.html" %}
 <div class="login-box uploadWrapper">
     <form>
+        <div class="login-title">업로드</div>
         <div class="form-floating mb-3">
             <label for="title">제목</label>
             <input
