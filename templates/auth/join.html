@@ -39,7 +39,6 @@
             url: '/auth/join/check',
             data: {inputId: inputId},
             success: function(response) {
-                console.log(response)
                 const { error, message } = response;
                 if (error) alert(message);
                 else alert(message);
