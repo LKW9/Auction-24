@@ -123,7 +123,7 @@ def myPage():
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
-    allItems = list(db.items.find({}))
+    allItems = list(db.items.find({}, {'_id': False}))
     return jsonify({'allItems': allItems})
 
 
@@ -146,10 +146,10 @@ def uploadItem():
         'itemNum' : itemNum,
         'title' : title,
         'pic' : extension,
-        'minBid' : minBid,
-        'nowBid' : nowBid,
-        'unitBid' : unitBid,
-        'status' : status,
+        'minBid' : int(minBid),
+        'nowBid' : int(nowBid),
+        'unitBid' : int(unitBid),
+        'status' : int(status),
         'desc' : desc,
         'owner' : owner
     }
