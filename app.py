@@ -21,6 +21,9 @@ def login():
 def join():
     return render_template('/auth/join.html')
 
+@app.route('/upload')
+def upload():
+    return render_template('/upload.html')
 ###MAIN###
 @app.route("/items", methods=["GET"])
 def getItemList():
